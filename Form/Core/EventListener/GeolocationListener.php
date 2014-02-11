@@ -40,8 +40,9 @@ class GeolocationListener implements EventSubscriberInterface
         $longitude = isset($data['longitude']) ? $data['longitude'] : null;
         $locality = isset($data['locality']) ? $data['locality'] : null;
         $country = isset($data['country']) ? $data['country'] : null;
+        $postal = isset($data['postal']) ? $data['postal'] : null;
 
-        $geo = new AddressGeolocation($address, $latitude, $longitude, $locality, $country);
+        $geo = new AddressGeolocation($address, $latitude, $longitude, $locality, $country, $postal);
 
         $event->setData($geo);
     }
@@ -51,6 +52,6 @@ class GeolocationListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(FormEvents::BIND => 'onBind');
+        return array(FormEvents::SUBMIT => 'onBind');
     }
 }

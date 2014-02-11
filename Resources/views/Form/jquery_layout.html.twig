@@ -385,6 +385,10 @@
         {% set elements = elements|merge({"country": "#" ~ form.country.vars.id}) %}
     {% endif %}
 
+    {% if form.postal is defined %}
+        {% set elements = elements|merge({"postal": "#" ~ form.postal.vars.id}) %}
+    {% endif %}
+
     {# Configs generation #}
     {% if elements | length > 0 %}
         {% set configs = configs|merge({"elements": elements}) %}
